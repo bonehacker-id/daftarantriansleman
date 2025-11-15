@@ -1,251 +1,235 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="id">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Lacak antrian dan ringkasan status pasien Bone Hacker untuk cabang Sleman Jogja." />
+  <link rel="icon" href="https://placehold.co/32x32/007AFF/FFFFFF?text=BH" type="image/png">
+
+  <title>Antrian Bone Hacker - Sleman Jogja</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  
+  <style>
+    :root {
+      --bg-main: #f5f5f7;
+      --bg-card: #ffffff;
+      --bg-subtle: #f0f0f2;
+      --text-primary: #1d1d1f;
+      --text-secondary: #6e6e73;
+      --border-color: rgba(0, 0, 0, 0.1);
+      --skeleton-bg: #dcdce0;
+
+      --status-waiting: #ff9500;
+      --status-in-treatment: #007aff;
+      --status-completed: #34c759;
+      
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+
+    html.dark {
+      --bg-main: #000000;
+      --bg-card: #1c1c1e;
+      --bg-subtle: #2c2c2e;
+      --text-primary: #f5f5f7;
+      --text-secondary: #8e8e93;
+      --border-color: rgba(255, 255, 255, 0.15);
+      --skeleton-bg: #3a3a3c;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      transition: background-color 0.3s, color 0.3s;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .status-waiting { color: var(--status-waiting); }
+    .status-in-treatment { color: var(--status-in-treatment); }
+    .status-completed { color: var(--status-completed); }
+    
+    .skeleton {
+        background-color: var(--skeleton-bg);
+        border-radius: 0.5rem;
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
   </style>
 </head>
-<body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="id"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="description" content="Lacak antrian dan ringkasan status pasien Bone Hacker untuk cabang Sleman Jogja." /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="icon" href="https://placehold.co/32x32/007AFF/FFFFFF?text=BH" type="image/png"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Antrian Bone Hacker - Sleman Jogja&lt;/title&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="preconnect" href="https://rsms.me/"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="stylesheet" href="https://rsms.me/inter/inter.css"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>:root {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg-main: #f5f5f7;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg-card: #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg-subtle: #f0f0f2;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--text-primary: #1d1d1f;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--text-secondary: #6e6e73;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--border-color: rgba(0, 0, 0, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--skeleton-bg: #dcdce0;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>--status-waiting: #ff9500;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--status-in-treatment: #007aff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--status-completed: #34c759;</p>
-<p class="p2"><span class="Apple-converted-space">      </span></p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>html.dark {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg-main: #000000;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg-card: #1c1c1e;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg-subtle: #2c2c2e;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--text-primary: #f5f5f7;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--text-secondary: #8e8e93;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--border-color: rgba(255, 255, 255, 0.15);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--skeleton-bg: #3a3a3c;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background-color: var(--bg-main);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-primary);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transition: background-color 0.3s, color 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>-webkit-font-smoothing: antialiased;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>-moz-osx-font-smoothing: grayscale;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.status-waiting { color: var(--status-waiting); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.status-in-treatment { color: var(--status-in-treatment); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.status-completed { color: var(--status-completed); }</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.skeleton {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>background-color: var(--skeleton-bg);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>border-radius: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@keyframes pulse {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>0%, 100% { opacity: 1; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>50% { opacity: 0.5; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="min-h-screen text-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="container mx-auto p-4 max-w-2xl"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;header class="mb-6 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1 class="text-4xl font-bold" style="color: var(--text-primary);"&gt;Antrian Pasien&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="mt-2 text-lg" style="color: var(--text-secondary);"&gt;Bone Hacker Live Status - Cabang Sleman Jogja&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="mb-6 p-5 rounded-2xl shadow-sm text-sm" style="background-color: var(--bg-card); border: 1px solid var(--border-color);"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3 class="font-bold text-base mb-3" style="color: var(--text-primary);"&gt;Informasi Penting&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;ul class="list-disc list-inside space-y-2" style="color: var(--text-secondary);"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Periksa nomor urut dan status pendaftaran pasien terbaru.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Rata-rata durasi terapi untuk setiap pasien adalah 15–20 menit.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Pendaftaran dilakukan langsung di lokasi terapi sesuai urutan kedatangan.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="summaryContainer" class="mb-6 rounded-2xl shadow-sm p-5" style="background-color: var(--bg-card); border: 1px solid var(--border-color);"&gt;&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;main id="patientListContainer" class="rounded-2xl shadow-sm p-5" style="background-color: var(--bg-card); border: 1px solid var(--border-color); min-height: 150px;"&gt;&lt;/main&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="text-center mt-8 text-xs" style="color: var(--text-secondary);"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;Terakhir diperbarui: &lt;span id="lastUpdated" class="font-semibold"&gt;-&lt;/span&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const REFRESH_INTERVAL = 90000;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const STATUS = { WAITING: 'waiting', IN_TREATMENT: 'in-treatment', COMPLETED: 'completed' };</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const BRANCH_CONFIG = {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>name: "Sleman Jogja",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>url: "https://script.google.com/macros/s/AKfycbz3BVJzt5szJOhuudYEWPSHjr63rcmyqfKSpfZWGBQuN4kAJ3voFI9dQFYFi1JPEJTs/exec"</p>
-<p class="p1"><span class="Apple-converted-space">    </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.addEventListener('DOMContentLoaded', init);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function init() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>setupDarkMode();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>renderPlaceholders();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>fetchData();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>setInterval(fetchData, REFRESH_INTERVAL);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>async function fetchData() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const response = await fetch(BRANCH_CONFIG.url);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const data = await response.json();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>updateUI(data);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>} catch (error) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>console.error(`Gagal memuat data untuk ${BRANCH_CONFIG.name}:`, error);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>updateUI(null, true);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const now = new Date().toLocaleTimeString("id-ID", { hour: '2-digit', minute: '2-digit', timeZone: "Asia/Jakarta" });</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('lastUpdated').textContent = `${now} WIB`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function renderPlaceholders() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>summaryContainer.innerHTML = createSummaryHTML(null, true);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>patientListContainer.innerHTML = `&lt;p style="color: var(--text-secondary);"&gt;Memuat daftar antrian...&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function updateUI(patients, isError = false) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const summaryContainer = document.getElementById('summaryContainer');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const listContainer = document.getElementById('patientListContainer');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (isError) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>summaryContainer.innerHTML = `&lt;h3 class="text-base font-semibold mb-3"&gt;Ringkasan Antrian&lt;/h3&gt;&lt;p class="text-red-500 font-semibold"&gt;Gagal memuat ringkasan.&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>listContainer.innerHTML = `&lt;p class="text-red-500 font-semibold"&gt;Gagal memuat daftar pasien.&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const safePatients = patients || [];</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const waiting = safePatients.filter(p =&gt; p.status === STATUS.WAITING).length;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const treating = safePatients.filter(p =&gt; p.status === STATUS.IN_TREATMENT).length;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const completed = safePatients.filter(p =&gt; p.status === STATUS.COMPLETED).length;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>summaryContainer.innerHTML = createSummaryHTML({ waiting, treating, completed });</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (safePatients.length === 0) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>listContainer.innerHTML = `&lt;p style="color: var(--text-secondary);"&gt;Belum ada antrian untuk hari ini.&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>listContainer.innerHTML = createPatientTable(safePatients);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function createSummaryHTML(stats, isLoading = false) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let content;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (isLoading) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content = `</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;&lt;div class="skeleton h-8 w-10 mx-auto"&gt;&lt;/div&gt;&lt;div class="skeleton h-3 w-12 mx-auto mt-2"&gt;&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;&lt;div class="skeleton h-8 w-10 mx-auto"&gt;&lt;/div&gt;&lt;div class="skeleton h-3 w-10 mx-auto mt-2"&gt;&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;&lt;div class="skeleton h-8 w-10 mx-auto"&gt;&lt;/div&gt;&lt;div class="skeleton h-3 w-12 mx-auto mt-2"&gt;&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content = `</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pt-2" style="border-top: 3px solid var(--status-waiting);"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-3xl font-bold status-waiting"&gt;${stats.waiting}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm tracking-wide font-medium" style="color: var(--text-secondary);"&gt;Menunggu&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pt-2" style="border-top: 3px solid var(--status-in-treatment);"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-3xl font-bold status-in-treatment"&gt;${stats.treating}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm tracking-wide font-medium" style="color: var(--text-secondary);"&gt;Terapi&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pt-2" style="border-top: 3px solid var(--status-completed);"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-3xl font-bold status-completed"&gt;${stats.completed}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm tracking-wide font-medium" style="color: var(--text-secondary);"&gt;Selesai&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>return `</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3 class="text-base font-semibold mb-4 text-center sm:text-left" style="color: var(--text-primary);"&gt;Ringkasan Antrian&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-3 gap-4 text-center"&gt;${content}&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function createPatientTable(patients) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const sorted = [...patients].sort((a, b) =&gt; (a.waitingNumber || 0) - (b.waitingNumber || 0));</p>
-<p class="p1"><span class="Apple-converted-space">        </span>return `</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="overflow-x-auto"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;table class="min-w-full text-left text-xs sm:text-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;thead style="color: var(--text-secondary);"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;tr class="border-b" style="border-color: var(--border-color);"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th class="p-2 pl-0 font-medium"&gt;No.&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th class="p-2 font-medium"&gt;Nama Pasien&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th class="p-2 font-medium"&gt;Status&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th class="p-2 pr-0 font-medium text-center"&gt;Posisi Antrian&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>${sorted.map(p =&gt; `</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;tr class="border-b" style="border-color: var(--bg-subtle);"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;td class="p-2 pl-0 font-semibold"&gt;${sanitize(p.waitingNumber)}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;td class="p-2"&gt;${sanitize(p.patientName)}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;td class="p-2 font-semibold status-${p.status}"&gt;${translateStatus(p.status)}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;td class="p-2 pr-0 text-center font-semibold"&gt;${p.status === STATUS.WAITING ? sanitize(p.queuePosition) : '-'}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>`).join('')}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/table&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function setupDarkMode() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const hour = new Date().getHours();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const isNight = hour &gt;= 18 || hour &lt; 6;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (isNight) document.documentElement.classList.add('dark');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function translateStatus(status) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const map = {<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">          </span>waiting: 'Menunggu',<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">          </span>'in-treatment': 'Terapi',<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">          </span>completed: 'Selesai'<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p1"><span class="Apple-converted-space">        </span>return map[status] || status;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function sanitize(str) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (!str &amp;&amp; str !== 0) return '';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const temp = document.createElement('div');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>temp.textContent = String(str);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>return temp.innerHTML;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<body class="min-h-screen text-sm">
+  <div class="container mx-auto p-4 max-w-2xl">
+    
+    <header class="mb-6 text-center">
+        <h1 class="text-4xl font-bold" style="color: var(--text-primary);">Antrian Pasien</h1>
+        <p class="mt-2 text-lg" style="color: var(--text-secondary);">Bone Hacker Live Status - Cabang Sleman Jogja</p>
+    </header>
+
+    <section class="mb-6 p-5 rounded-2xl shadow-sm text-sm" style="background-color: var(--bg-card); border: 1px solid var(--border-color);">
+        <h3 class="font-bold text-base mb-3" style="color: var(--text-primary);">Informasi Penting</h3>
+        <ul class="list-disc list-inside space-y-2" style="color: var(--text-secondary);">
+            <li>Periksa nomor urut dan status pendaftaran pasien terbaru.</li>
+            <li>Rata-rata durasi terapi untuk setiap pasien adalah 15–20 menit.</li>
+            <li>Pendaftaran dilakukan langsung di lokasi terapi sesuai urutan kedatangan.</li>
+        </ul>
+    </section>
+
+    <section id="summaryContainer" class="mb-6 rounded-2xl shadow-sm p-5" style="background-color: var(--bg-card); border: 1px solid var(--border-color);"></section>
+
+    <main id="patientListContainer" class="rounded-2xl shadow-sm p-5" style="background-color: var(--bg-card); border: 1px solid var(--border-color); min-height: 150px;"></main>
+
+    <footer class="text-center mt-8 text-xs" style="color: var(--text-secondary);">
+      <p>Terakhir diperbarui: <span id="lastUpdated" class="font-semibold">-</span></p>
+    </footer>
+  </div>
+
+  <script>
+    const REFRESH_INTERVAL = 90000;
+    const STATUS = { WAITING: 'waiting', IN_TREATMENT: 'in-treatment', COMPLETED: 'completed' };
+
+    const BRANCH_CONFIG = {
+      name: "Sleman Jogja",
+      url: "https://script.google.com/macros/s/AKfycbz3BVJzt5szJOhuudYEWPSHjr63rcmyqfKSpfZWGBQuN4kAJ3voFI9dQFYFi1JPEJTs/exec"
+    };
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    function init() {
+        setupDarkMode();
+        renderPlaceholders();
+        fetchData();
+        setInterval(fetchData, REFRESH_INTERVAL);
+    }
+
+    async function fetchData() {
+        try {
+            const response = await fetch(BRANCH_CONFIG.url);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const data = await response.json();
+            updateUI(data);
+        } catch (error) {
+            console.error(`Gagal memuat data untuk ${BRANCH_CONFIG.name}:`, error);
+            updateUI(null, true);
+        }
+        const now = new Date().toLocaleTimeString("id-ID", { hour: '2-digit', minute: '2-digit', timeZone: "Asia/Jakarta" });
+        document.getElementById('lastUpdated').textContent = `${now} WIB`;
+    }
+
+    function renderPlaceholders() {
+        summaryContainer.innerHTML = createSummaryHTML(null, true);
+        patientListContainer.innerHTML = `<p style="color: var(--text-secondary);">Memuat daftar antrian...</p>`;
+    }
+
+    function updateUI(patients, isError = false) {
+        const summaryContainer = document.getElementById('summaryContainer');
+        const listContainer = document.getElementById('patientListContainer');
+
+        if (isError) {
+            summaryContainer.innerHTML = `<h3 class="text-base font-semibold mb-3">Ringkasan Antrian</h3><p class="text-red-500 font-semibold">Gagal memuat ringkasan.</p>`;
+            listContainer.innerHTML = `<p class="text-red-500 font-semibold">Gagal memuat daftar pasien.</p>`;
+            return;
+        }
+        
+        const safePatients = patients || [];
+        const waiting = safePatients.filter(p => p.status === STATUS.WAITING).length;
+        const treating = safePatients.filter(p => p.status === STATUS.IN_TREATMENT).length;
+        const completed = safePatients.filter(p => p.status === STATUS.COMPLETED).length;
+        
+        summaryContainer.innerHTML = createSummaryHTML({ waiting, treating, completed });
+
+        if (safePatients.length === 0) {
+            listContainer.innerHTML = `<p style="color: var(--text-secondary);">Belum ada antrian untuk hari ini.</p>`;
+        } else {
+            listContainer.innerHTML = createPatientTable(safePatients);
+        }
+    }
+
+    function createSummaryHTML(stats, isLoading = false) {
+        let content;
+        if (isLoading) {
+            content = `
+                <div><div class="skeleton h-8 w-10 mx-auto"></div><div class="skeleton h-3 w-12 mx-auto mt-2"></div></div>
+                <div><div class="skeleton h-8 w-10 mx-auto"></div><div class="skeleton h-3 w-10 mx-auto mt-2"></div></div>
+                <div><div class="skeleton h-8 w-10 mx-auto"></div><div class="skeleton h-3 w-12 mx-auto mt-2"></div></div>
+            `;
+        } else {
+            content = `
+                <div class="pt-2" style="border-top: 3px solid var(--status-waiting);">
+                    <span class="text-3xl font-bold status-waiting">${stats.waiting}</span>
+                    <p class="text-sm tracking-wide font-medium" style="color: var(--text-secondary);">Menunggu</p>
+                </div>
+                <div class="pt-2" style="border-top: 3px solid var(--status-in-treatment);">
+                    <span class="text-3xl font-bold status-in-treatment">${stats.treating}</span>
+                    <p class="text-sm tracking-wide font-medium" style="color: var(--text-secondary);">Terapi</p>
+                </div>
+                <div class="pt-2" style="border-top: 3px solid var(--status-completed);">
+                    <span class="text-3xl font-bold status-completed">${stats.completed}</span>
+                    <p class="text-sm tracking-wide font-medium" style="color: var(--text-secondary);">Selesai</p>
+                </div>
+            `;
+        }
+        return `
+            <h3 class="text-base font-semibold mb-4 text-center sm:text-left" style="color: var(--text-primary);">Ringkasan Antrian</h3>
+            <div class="grid grid-cols-3 gap-4 text-center">${content}</div>
+        `;
+    }
+    
+    function createPatientTable(patients) {
+        const sorted = [...patients].sort((a, b) => (a.waitingNumber || 0) - (b.waitingNumber || 0));
+        return `
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-left text-xs sm:text-sm">
+                    <thead style="color: var(--text-secondary);">
+                        <tr class="border-b" style="border-color: var(--border-color);">
+                            <th class="p-2 pl-0 font-medium">No.</th>
+                            <th class="p-2 font-medium">Nama Pasien</th>
+                            <th class="p-2 font-medium">Status</th>
+                            <th class="p-2 pr-0 font-medium text-center">Posisi Antrian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${sorted.map(p => `
+                            <tr class="border-b" style="border-color: var(--bg-subtle);">
+                                <td class="p-2 pl-0 font-semibold">${sanitize(p.waitingNumber)}</td>
+                                <td class="p-2">${sanitize(p.patientName)}</td>
+                                <td class="p-2 font-semibold status-${p.status}">${translateStatus(p.status)}</td>
+                                <td class="p-2 pr-0 text-center font-semibold">${p.status === STATUS.WAITING ? sanitize(p.queuePosition) : '-'}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
+        `;
+    }
+
+    function setupDarkMode() {
+        const hour = new Date().getHours();
+        const isNight = hour >= 18 || hour < 6;
+        if (isNight) document.documentElement.classList.add('dark');
+    }
+
+    function translateStatus(status) {
+        const map = { 
+          waiting: 'Menunggu', 
+          'in-treatment': 'Terapi', 
+          completed: 'Selesai' 
+        };
+        return map[status] || status;
+    }
+
+    function sanitize(str) {
+        if (!str && str !== 0) return '';
+        const temp = document.createElement('div');
+        temp.textContent = String(str);
+        return temp.innerHTML;
+    }
+  </script>
 </body>
 </html>
